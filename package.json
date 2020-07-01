@@ -1,7 +1,7 @@
 {
-  "name": "--------",
+  "name": "harry-potter-spells",
   "version": "1.0.0",
-  "description": "--------",
+  "description": "api-practice",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode development",
@@ -11,13 +11,14 @@
     "debug": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand"
   },
   "keywords": [],
-  "author": "--------",
+  "author": "Megan Hepner, Sara Kane, Chris Yoon",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
+    "dotenv-webpack": "^1.8.0",
     "eslint": "^6.3.0",
     "eslint-loader": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
