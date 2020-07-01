@@ -18,9 +18,13 @@ function getHouseTraits(response, house) {
   
     let responseHouse = response.find(element => element.name === house);
     
-    for (const [key, value] of Object.entries(responseHouse)) {
+/*     for (const [key, value] of Object.entries(responseHouse)) {
       $('.userHouse').append(`${key}: ${value}`);
-    }
+    } */
+    let trait = $('.userHouse');
+    trait.append(` Your mascot is a ${responseHouse.mascot}, the colors of your house are ${responseHouse.colors[0]} and ${responseHouse.colors[1]}  and your house values are ${responseHouse.values[0]}, ${ responseHouse.values[1]}, 
+    ${ responseHouse.values[2]}, and ${ responseHouse.values[3]}.`);
+
   }
   else {
     $('userHouse').text("");
@@ -38,7 +42,7 @@ $(document).ready(function () {
       })
       .then(function(jsonifiedResponse) {
         house = jsonifiedResponse;
-        $('.userHouse').text(`${jsonifiedResponse}`);
+        $('.userHouse').text(`Your house is ${jsonifiedResponse}!`);
         return fetch(`https://www.potterapi.com/v1/houses?key=${process.env.API_KEY}`)
       })
       .then(function(response) {
