@@ -15,22 +15,37 @@ function getElements(response, spell) {
 }
 
 $(document).ready(function () {
+  $('#userHouse').click(function() {
+    fetch(`https://www.potterapi.com/v1/sortingHat`)
+    .then(function(response) {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response.json();
+    })
+    .catch(function(error) {
+      return error;
+    })
+    .then(function(jsonifiedResponse){
+      $('.userHouse').text(`${jsonifiedResponse}`);
+    });
+
+  })
   $('#cast').click(function() {
-      const spell = $('#spell').val();
-      $('#spell').val("");
-      fetch(`https://www.potterapi.com/v1/spells?key=${process.env.API_KEY}`)
-        .then(function(response) {
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          return response.json();
-        })
-        .catch(function(error) {
-          return error;
-        })
-        .then(function(jsonifiedResponse){
-          getElements(jsonifiedResponse, spell);
-        });
-  
+    const spell = $('#spell').val();
+    $('#spell').val("");
+    fetch(`https://www.potterapi.com/v1/spells?key=${process.env.API_KEY}`)
+      .then(function(response) {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .catch(function(error) {
+        return error;
+      })
+      .then(function(jsonifiedResponse){
+        getElements(jsonifiedResponse, spell);
+      });
   });
 });
