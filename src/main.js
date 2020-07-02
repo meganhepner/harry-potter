@@ -3,6 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { PotterService } from './potterService.js';
+import { PexelsService } from './pexelsService.js';
 
 function getSpells(response, spell) {
   if (response.find(element => element.spell === spell)) {
@@ -10,7 +11,7 @@ function getSpells(response, spell) {
     $('.castSpell').text(`You have cast ${spell}, which ${responseSpell.effect}`);
   } else {
     $('castSpell').text("");
-    $('.showErrors').text(`There was an error: ${response.message}`);
+    $('.showErrors').text(`That's not a spell dude: ${response.message}`);
   }
 }
 
@@ -26,12 +27,24 @@ function getHouseTraits(response, house) {
   }
 }
 
+function getHousePicture(picture) {
+  if(picture) { 
+    let houseMascot = picture.photos[0].src.small;
+    $('.userHouse').append(`<img src="${houseMascot}">`);
+    
+  }
+}
+
 $(document).ready(function () {
   $('#userHouse').click(function() {
     (async () => {
       let potterService = new PotterService();
+      let pexelsService = new PexelsService();
       const response = await potterService.getHouseAndHouseInfo();
+      const response2 = await pexelsService.getPicture(response[1]);
+      console.log(response)
       getHouseTraits(response[0], response[1]);
+      getHousePicture(response2);
     })();
   });
   
