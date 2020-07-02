@@ -1,4 +1,3 @@
-
 {
   "parserOptions": {
       "ecmaVersion": 2018,
@@ -13,8 +12,9 @@
   },
   "rules": {
       "semi": 1,
-      "indent": ["warn", 2],
+      "indent": ["warn", 2, { "MemberExpression": 1 }],
       "no-console": "warn",
-      "no-debugger": "warn"
+      "no-debugger": "warn",
+      "no-unused-vars": "warn"
   }
 }
